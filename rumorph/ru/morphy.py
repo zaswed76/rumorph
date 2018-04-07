@@ -84,13 +84,43 @@ def split_parts_speech(words_seq):
     return dct
 
 
+def re_normalize_DALF(text):
+    res = set()
+    pat = re.compile(r"(\b[А-ЯЁ]+\b)([\s])")
+    for w in text:
+        if w and w[0].isupper():
+            match = re.match(pat, w)
+            if match:
+                res.add(match.group(1).lower())
+    return res
+
+
+
 
 if __name__ == '__main__':
-    parts_speech_dir = "../resources/parts_speech"
-    words = file_to_words("../resources/new.txt")
-    norm = normalize_words(words)
-    len_norm = len_filter(norm, 2)
-    print(len_norm)
+    all_source_dict = r"D:\0SYNC\Serg\Dropbox\project\Cube\Dct"
+    target_dicts = "../resources/target_dicts"
+    name = "DALF.TXT"
+    pth = os.path.join(all_source_dict, name)
+
+
+
+    words = file_to_words(pth)
+    norm_list = re_normalize_DALF(words)
+    words_to_file(os.path.join(target_dicts, "dalf.txt"), sorted(norm_list))
+    print(norm_list)
+    print(len(norm_list))
+
+
+    # parts_speech_dir = "../resources/parts_speech"
+    # words = file_to_words("../resources/new.txt")
+
+    # len_norm = len_filter(norm, 2)
+    # for w in words:
+    #     if w and w[0].isupper():
+    #         if w[0:10].find("-") > 0:
+    #             print(w)
+    #             print("--------------------------")
 
 
     # dct = split_parts_speech(words)
