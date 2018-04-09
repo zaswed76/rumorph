@@ -26,9 +26,11 @@ class PartsSpeechDict(MutableMapping):
 
     def add_word(self, word, part_speech):
         for ps in part_speech:
-            lst = self._data.get(ps, [])
-            lst.append(word)
-            self._data[str(ps)] = lst
+            seq = self._data.get(ps, [])
+            seq.append(word)
+            # self._data[str(ps)] = seq
+
+
 
 
 
