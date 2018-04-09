@@ -114,13 +114,21 @@ if __name__ == '__main__':
     opcorpora_Orgn = r"D:\Serg\Dropbox\cube\dict.opcorpora.txt/dict.opcorpora_Orgn.txt"
     opcorpora_Geox = r"D:\Serg\Dropbox\cube\dict.opcorpora.txt/dict.opcorpora_Geox.txt"
     opcorpora_sing = r"D:\Serg\Dropbox\cube\dict.opcorpora.txt/dict.opcorpora_sing.txt"
-    opcorpora_noun_words = r"D:\Serg\Dropbox\cube\dict.opcorpora.txt/dict.opcorpora_noun_words.txt"
-    noun = r"D:\Serg\project\cube_projects\libs\rumorph\rumorph\resources\NOUNS\NOUN_no_duplicat.txt"
 
-    import sys
-    corpora_noun = file_to_words(opcorpora)
-    print(sys.getsizeof(corpora_noun))
-    input()
+
+    opcorpora_noun_words = r"D:\0SYNC\python_projects\cube_projects\libs\rumorph\rumorph\resources\NOUNS\corpora_noun.txt"
+    noun_words = r"D:\0SYNC\python_projects\cube_projects\libs\rumorph\rumorph\resources\NOUNS\NOUN_no_duplicat.txt"
+    diff_words = r"D:\0SYNC\python_projects\cube_projects\libs\rumorph\rumorph\resources\NOUNS\diff.txt"
+
+    corpora_noun = file_to_words(opcorpora_noun_words)
+    noun = file_to_words(noun_words)
+
+    diff = set(noun) - set(corpora_noun)
+
+    words_to_file(diff_words, diff)
+
+
+
 
 
     # lst = sorted(set(corpora_noun))
